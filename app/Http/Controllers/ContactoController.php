@@ -11,15 +11,18 @@ class ContactoController extends Controller
             'Nombre' => 'required',
             'Correo' => 'required|email',
             'Asunto' => 'required',
-            'contenido'=> 'min:10'
+            'Contenido'=> 'required|min:10'
         ],
 
         [   
             //como segundo parametro puede recibir alguna edicion de la regla
-            'Nombre.required' =>'Ingresa un nombre',
+            'Nombre.required' =>'Nesesito tu nombre',
+            'Asunto.required' =>'Nesesito un asunto',
+            'Correo.required' =>'Nesesito tu correo',
+            'Contenido.required'=> 'Ups.. tu mensaje esta vacio'
             //estamos editando la regla required en el campo NOMBRE y mostrara el mensaje =>
         ]);
 
-        return "Los datos se enviaron";
+        return back() ->with('status', 'Recibimos tu mensaje, te responderemos en menos de 24 horas.');
     }
 }

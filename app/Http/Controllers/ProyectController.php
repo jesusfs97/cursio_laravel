@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class ProyectController extends Controller
 {
+
+    public function __construct(){
+        $this -> middleware('auth')->except('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -120,8 +124,10 @@ class ProyectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $proyect)
     {
-        //
+        $proyect->delete();
+
+        return redirect()->route('proyects.index');
     }
 }

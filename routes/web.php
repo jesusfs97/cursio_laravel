@@ -68,8 +68,14 @@ route::patch('/portafolio/{proyect}', 'ProyectController@update')->name('proyect
 route::post('/portafolio/crear', 'ProyectController@store')->name('proyects.guardar');
 
 route::get('/portafolio/{Proyect}', 'ProyectController@show')->name('proyects.ver');
+Route::delete('/portafolio/{proyect}', 'ProyectController@destroy') ->name('proyects.destruir');
+
 
 route::view('/nosotros','nosotros')->name('nosotros');
 
+
+
+
+Auth::routes();
 
 
