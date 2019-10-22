@@ -52,26 +52,33 @@
         
         Route::resource('usuario', 'UserController'); 
     */
-
-route::view('/', 'home')->name('home');
+    // Route::post('/añadir-carrito', 'carroController@add')->name('añadir');
+    // Route::get('/Carrito_de_compras', 'carroController@cart')->name('carrito.compra');
+    // Route::post('/Limpiar_carrito', 'carroController@clear')->name('carrito.vaciar');
+    // Route::get('/marca/{url}', 'HomeController@brands')->name('marcas');
+    // Route::get('/categorias/{url}', 'HomeController@categories')->name('categorias');
     
+Route::view('/', 'home')->name('home');
+Route::get('/', 'ProyectController@menu')->name('home');
+
 route::view('/contacto', 'contacto')->name('contacto');
 route::post('contacto', 'ContactoController@store');
 
-route::get('/portafolio' , 'ProyectController@index' )->name('proyects.index');
+route::get('/Administrar' , 'ProyectController@index' )->name('Admin.index');
 
-route::get('/portafolio/crear', 'ProyectController@create')->name('proyects.crear');
+route::get('/Administrar/crear', 'ProyectController@create')->name('Admin.crear');
 
-route::get('/portafolio/{proyect}/editar', 'ProyectController@edit')->name('proyects.editar');
-route::patch('/portafolio/{proyect}', 'ProyectController@update')->name('proyects.actualizar');
+route::get('/Administrar/{proyect}/editar', 'ProyectController@edit')->name('Admin.editar');
+route::patch('/Administrar/{proyect}', 'ProyectController@update')->name('Admin.actualizar');
 
-route::post('/portafolio/crear', 'ProyectController@store')->name('proyects.guardar');
+route::post('/Administrar/crear', 'ProyectController@store')->name('Admin.guardar');
 
-route::get('/portafolio/{Proyect}', 'ProyectController@show')->name('proyects.ver');
-Route::delete('/portafolio/{proyect}', 'ProyectController@destroy') ->name('proyects.destruir');
+route::get('/Administrar/{Proyect}', 'ProyectController@show')->name('Admin.ver');
+Route::delete('/Administrar/{proyect}', 'ProyectController@destroy') ->name('Admin.destruir');
 
 
 route::view('/nosotros','nosotros')->name('nosotros');
+
 
 
 

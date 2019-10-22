@@ -18,9 +18,16 @@ class ProyectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function menu()
+    {
+        return view('home',[
+            'Proyectos' => Project::get()
+        ]);
+    }
+
     public function index()
     {
-        return view('Proyectos.index' , [
+        return view('Comidas.index' , [
             'Proyectos' => Project::get()
         ]);
     }
@@ -32,7 +39,7 @@ class ProyectController extends Controller
      */
     public function create()
     {
-        return view('Proyectos.create');
+        return view('Comidas.create');
     }
 
     /**
@@ -46,25 +53,25 @@ class ProyectController extends Controller
         request()->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
-            'url' => 'required',
+            'precio' => 'required',
         ]); #todo esto lo podriamos guardar en la variable DATOS
         
         //recibimos los datos y los asignamos a variables
         $titulo = $request->get('titulo');
         $descripcion = $request->get('descripcion');
-        $url = $request->get('url');
+        $precio = $request->get('precio');
 
         Project::create([ # <-- este es el modelo project que creamos
             'titulo'=> $titulo,
             'descripcion'=> $descripcion,
-            'url'=> $url,
+            'precio'=> $precio,
         ]);
 
         /* OTRO METODO seria 
             Project::create(request()->all()) pero si deshabilitamos la propiedad fillable
             Project::create($DATOS)*/
 
-        return redirect()->route('proyects.index');
+        return redirect()->route('Admin.index');
         }
 
     /**
@@ -77,7 +84,7 @@ class ProyectController extends Controller
     {   // el metodo find es para buscar un registro en este caso por ID
         ;
 
-        return view('Proyectos.show' , [
+        return view('Comidas.show' , [
             'proyect' => $Proyect
         ]);
     }
@@ -90,7 +97,7 @@ class ProyectController extends Controller
      */
     public function edit(Project $Proyect)
     {
-        return view ('Proyectos.editar',[
+        return view ('Comidas.editar',[
             'proyecto' => $Proyect
             // la primer variable va a ser la que se mande a la vista
         ]);
@@ -108,14 +115,14 @@ class ProyectController extends Controller
         request()->validate([
         'titulo' => 'required',
         'descripcion' => 'required',
-        'url' => 'required',]);
+        'precio' => 'required',]);
 
         $Proyect->update([
             'titulo' => request('titulo'),
             'descripcion' => request('descripcion'),
-            'url' => request('url')
+            'precio' => request('precio')
         ]);
-        return redirect()->route('proyects.ver', $Proyect);
+        return redirect()->route('Admin.index', $Proyect);
     }
 
     /**
@@ -128,6 +135,6 @@ class ProyectController extends Controller
     {
         $proyect->delete();
 
-        return redirect()->route('proyects.index');
+        return redirect()->route('Admin.index');
     }
 }

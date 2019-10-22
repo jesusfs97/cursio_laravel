@@ -18,7 +18,7 @@
                     
                     @csrf {{-- esto sirve para generar un token y proteger la pagina de ataque xss --}}
                 <div class="form-group">
-                    <h1 class=" display-4">Contacto</h1>
+                    <h1 class="display-4">Contacto</h1>
                     <hr />
 
                     <label for="Nombre">Nombre:</label>

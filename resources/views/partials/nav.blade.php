@@ -22,18 +22,19 @@
                 </li>
 
 
-                <li class="nav-item" >
-                    <a class="nav-link {{ modoActivo( 'proyects.*' ) }}" href="{{ route('proyects.index')}}">Portafolio</a>
-                </li>
-
-
+                
+                
                 <li class="nav-item" >
                     <a class="nav-link {{ modoActivo( 'contacto' )}}" href="{{ route('contacto')}}">Contactanos</a>
                 </li>
-
-
-
+                
+                
+                
                 @auth
+                
+                <li class="nav-item" >
+                    <a class="nav-link {{ modoActivo( 'Admin*' ) }}" href="{{ route('Admin.index')}}">Administrar</a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="#"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
